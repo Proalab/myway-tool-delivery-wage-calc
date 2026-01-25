@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delivery Driver Profit Calculator - True Hourly Wage</title>
+    <meta name="description" content="Stop guessing. Calculate your actual DoorDash, Uber Eats, Instacart, and Grubhub earnings after gas, taxes, and depreciation. Updated for 2026 IRS mileage rates.">
+    <meta name="theme-color" content="#0f172a">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'slate-950': '#020617',
+                        'slate-900': '#0f172a',
+                        'slate-800': '#1e293b',
+                        'slate-700': '#334155',
+                        'slate-600': '#475569',
+                        'slate-400': '#94a3b8',
+                        'slate-300': '#cbd5e1',
+                        'emerald-400': '#34d399',
+                        'emerald-500': '#10b981',
+                        'amber-500': '#f59e0b',
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { font-family: 'Inter', system-ui, sans-serif; }
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        input[type="number"] { -moz-appearance: textfield; }
+    </style>
+</head>
+<body class="bg-slate-900 text-white min-h-screen">
+    <!-- Header -->
+    <header class="border-b border-slate-800">
+        <div class="max-w-5xl mx-auto px-4 py-4 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <span class="text-2xl">📦</span>
+                <span class="font-semibold text-lg">Delivery Driver Wage</span>
+            </div>
+            <nav class="flex items-center gap-6 text-sm">
+                <a href="#calculator" class="text-emerald-400 hover:text-emerald-300">Calculator</a>
+                <a href="#insider" class="text-slate-400 hover:text-white">Insider</a>
+                <a href="#contact" class="text-slate-400 hover:text-white">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero + Calculator Section -->
+        <section id="calculator" class="py-12 px-4">
+            <div class="max-w-5xl mx-auto">
+                <div class="text-center mb-8">
+                    <h1 class="text-3xl md:text-4xl font-bold mb-3">
+                        🧮 Delivery Driver Profit Calculator
+                    </h1>
+                    <p class="text-slate-400 text-lg">
+                        Are you actually making money, or just selling your car one delivery at a time?
+                    </p>
+                    <p class="text-slate-500 text-sm mt-2">
+                        Updated for 2026 IRS mileage rates: <span class="text-emerald-400">$0.725/mile</span>
+                    </p>
+                </div>
+
+                <!-- Calculator Card -->
+                <div class="bg-slate-800 rounded-xl p-6 max-w-2xl mx-auto">
+                    <form id="calculatorForm" class="space-y-4">
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <!-- Total Earnings -->
+                            <div>
+                                <label class="block text-sm mb-2">
+                                    <span class="text-emerald-400">$</span> Total Earnings (From App, for the shift or day)
+                                </label>
+                                <input type="number" id="totalEarnings" value="100.00" step="0.01" min="0"
+                                    class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white focus:border-emerald-500 focus:outline-none">
+                                <p class="text-xs text-slate-500 mt-1">Enter the total shown in your delivery app (base pay, tips, and bonuses)</p>
+                            </div>
+                            <!-- Hours Worked -->
+                            <div>
+                                <label class="block text-sm mb-2">
+                                    <span class="text-emerald-400">⏱</span> Hours Worked
+                                </label>
+                                <input type="number" id="hoursWorked" value="6.0" step="0.5" min="0"
+                                    class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white focus:border-emerald-500 focus:outline-none">
+                            </div>
+                        </div>
+
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <!-- Miles Driven -->
+                            <div>
+                                <label class="block text-sm mb-2">
+                                    <span class="text-emerald-400">🚗</span> Miles Driven
+                                </label>
+                                <input type="number" id="milesDriven" value="80" step="1" min="0"
+                                    class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white focus:border-emerald-500 focus:outline-none">
+                            </div>
+                            <!-- Gas Price -->
+                            <div>
+                                <label class="block text-sm mb-2">
+                                    <span class="text-emerald-400">⛽</span> Gas Price ($/gal)
+                                </label>
+                                <input type="number" id="gasPrice" value="2.85" step="0.01" min="0"
+                                    class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white focus:border-emerald-500 focus:outline-none">
+                            </div>
+                        </div>
+
+                        <!-- Car MPG -->
+                        <div>
+                            <label class="block text-sm mb-2">
+                                <span class="text-emerald-400">⚡</span> Car MPG
+                            </label>
+                            <input type="number" id="carMpg" value="25" step="1" min="1"
+                                class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white focus:border-emerald-500 focus:outline-none">
+                        </div>
+
+                        <!-- Advanced Settings -->
+                        <details class="border-t border-slate-700 pt-4">
+                            <summary class="cursor-pointer text-slate-400 hover:text-white text-sm flex items-center gap-2">
+                                <span>▼</span> Advanced Settings <span class="text-slate-600">(Vehicle Wear & Taxes)</span>
+                            </summary>
+                            <div class="mt-4 grid md:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-sm mb-2 text-slate-400">Depreciation ($/mile)</label>
+                                    <input type="number" id="depreciation" value="0.10" step="0.01" min="0"
+                                        class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white focus:border-emerald-500 focus:outline-none">
+                                </div>
+                                <div>
+                                    <label class="block text-sm mb-2 text-slate-400">Maintenance ($/mile)</label>
+                                    <input type="number" id="maintenance" value="0.05" step="0.01" min="0"
+                                        class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white focus:border-emerald-500 focus:outline-none">
+                                </div>
+                                <div>
+                                    <label class="block text-sm mb-2 text-slate-400">Self-Employment Tax Rate (%)</label>
+                                    <input type="number" id="taxRate" value="15.3" step="0.1" min="0" max="100"
+                                        class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white focus:border-emerald-500 focus:outline-none">
+                                </div>
+                                <div>
+                                    <label class="block text-sm mb-2 text-slate-400">Include Taxes in Calc?</label>
+                                    <select id="includeTaxes"
+                                        class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white focus:border-emerald-500 focus:outline-none">
+                                        <option value="yes">Yes</option>
+                                        <option value="no">No</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </details>
+                    </form>
+
+                    <p class="text-center text-xs text-slate-500 mt-6">
+                        Data stays on your device. We do not store your earnings.
+                    </p>
+                </div>
+
+                <!-- Results -->
+                <div id="results" class="max-w-2xl mx-auto mt-6">
+                    <div class="bg-slate-800 rounded-xl p-6">
+                        <h2 class="text-lg font-semibold mb-4 text-center">Your Results</h2>
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                            <div class="bg-slate-900 rounded-lg p-4">
+                                <p class="text-slate-400 text-xs mb-1">True Hourly Wage</p>
+                                <p id="trueHourly" class="text-2xl font-bold text-emerald-400">$0.00</p>
+                            </div>
+                            <div class="bg-slate-900 rounded-lg p-4">
+                                <p class="text-slate-400 text-xs mb-1">Gross Hourly</p>
+                                <p id="grossHourly" class="text-2xl font-bold text-white">$0.00</p>
+                            </div>
+                            <div class="bg-slate-900 rounded-lg p-4">
+                                <p class="text-slate-400 text-xs mb-1">Total Expenses</p>
+                                <p id="totalExpenses" class="text-2xl font-bold text-red-400">$0.00</p>
+                            </div>
+                            <div class="bg-slate-900 rounded-lg p-4">
+                                <p class="text-slate-400 text-xs mb-1">Net Profit</p>
+                                <p id="netProfit" class="text-2xl font-bold text-white">$0.00</p>
+                            </div>
+                        </div>
+                        <!-- Expense Breakdown -->
+                        <div class="mt-4 bg-slate-900 rounded-lg p-4">
+                            <p class="text-sm text-slate-400 mb-2">Expense Breakdown:</p>
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-2 text-sm">
+                                <div class="flex justify-between">
+                                    <span class="text-slate-500">Gas:</span>
+                                    <span id="gasExpense" class="text-slate-300">$0.00</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-slate-500">Depreciation:</span>
+                                    <span id="depExpense" class="text-slate-300">$0.00</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-slate-500">Maintenance:</span>
+                                    <span id="maintExpense" class="text-slate-300">$0.00</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-slate-500">Taxes:</span>
+                                    <span id="taxExpense" class="text-slate-300">$0.00</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Section -->
+        <section class="py-12 px-4 border-t border-slate-800">
+            <div class="max-w-3xl mx-auto">
+                <h2 class="text-2xl font-bold mb-4">Why Most Delivery Drivers Are Losing Money (And Don't Know It)</h2>
+                <p class="text-slate-400 mb-4">
+                    If you deliver for DoorDash, Uber Eats, Instacart, Grubhub, or Amazon Flex, the number you see in your app is <strong class="text-white">not</strong> your salary. It is your "Gross Revenue." You are running a small delivery business, and like any business, you have overhead.
+                </p>
+                <p class="text-slate-400">
+                    This <span class="text-emerald-400">Delivery Driver Profit Calculator</span> reveals the truth behind your earnings. By factoring in the invisible costs of delivering—depreciation, self-employment taxes, and fuel—we help you calculate your <a href="#" class="text-emerald-400 hover:underline">True Hourly Wage</a>.
+                </p>
+
+                <h3 class="text-xl font-bold mt-8 mb-4">How to Use This Calculator</h3>
+                <ol class="space-y-3 text-slate-400">
+                    <li><span class="text-white font-medium">1. Total Earnings:</span> Enter the full amount shown in your delivery app for the shift or week (including tips).</li>
+                    <li><span class="text-white font-medium">2. Hours Worked:</span> Include the time you spent waiting for orders at restaurants, not just active delivery time.</li>
+                    <li><span class="text-white font-medium">3. Miles Driven:</span> Enter the total miles, including driving to pickup spots and returning to hotspots.</li>
+                    <li><span class="text-white font-medium">4. Vehicle Details:</span> Input your car's MPG and current gas prices.</li>
+                    <li><span class="text-white font-medium">5. The Result:</span> The calculator will subtract your expenses from your earnings to show what you actually put in your pocket.</li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- CTA Banner -->
+        <section class="py-8 px-4 bg-emerald-600">
+            <div class="max-w-3xl mx-auto text-center">
+                <h2 class="text-xl font-bold mb-2">📋 Free Download: 2026 Delivery Driver Tax Checklist</h2>
+                <p class="text-emerald-100 mb-4">
+                    Don't miss a deduction. Get your complete checklist of write-offs, quarterly deadlines, and tracking requirements—all in one printable PDF.
+                </p>
+                <button class="bg-slate-900 hover:bg-slate-800 text-white font-semibold px-6 py-3 rounded-lg transition-colors">
+                    Download Free PDF Checklist
+                </button>
+                <p class="text-emerald-200 text-sm mt-2">(No email address required)</p>
+            </div>
+        </section>
+
+        <!-- Hidden Costs Section -->
+        <section class="py-12 px-4 bg-slate-800/50">
+            <div class="max-w-3xl mx-auto">
+                <h2 class="text-2xl font-bold mb-6">Understanding Your Hidden Costs</h2>
+                <p class="text-slate-400 mb-6">
+                    Many delivery drivers ignore these costs because they don't pay them immediately. But eventually, the bill comes due.
+                </p>
+
+                <div class="space-y-8">
+                    <!-- Depreciation -->
+                    <div>
+                        <h3 class="text-lg font-semibold text-emerald-400 mb-2">1. Depreciation (The Silent Killer)</h3>
+                        <p class="text-slate-400 mb-3">Every mile you drive lowers the resale value of your car.</p>
+                        <div class="bg-slate-900 rounded-lg p-4 space-y-3">
+                            <p class="text-slate-400">
+                                <span class="text-white font-medium">The Math:</span> If you bought a car for $20,000 and it lasts 200,000 miles, it costs you <span class="text-emerald-400">$0.10 per mile</span> just in lost value.
+                            </p>
+                            <p class="text-slate-400">
+                                <span class="text-white font-medium">The Reality:</span> When you trade in your car later, you will get thousands less because of those high delivery miles. Our calculator estimates this so you can save for your next vehicle.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Self-Employment Tax -->
+                    <div>
+                        <h3 class="text-lg font-semibold text-emerald-400 mb-2">2. The Self-Employment Tax Hit</h3>
+                        <p class="text-slate-400 mb-3">As a W-2 employee, your boss pays half your Social Security and Medicare taxes. As a delivery driver (1099 contractor), you must pay both halves.</p>
+                        <div class="bg-slate-900 rounded-lg p-4 space-y-3">
+                            <p class="text-slate-400">
+                                <span class="text-white font-medium">The Rate:</span> The Self-Employment Tax rate is roughly <span class="text-emerald-400">15.3%</span> of your net profit.
+                            </p>
+                            <p class="text-slate-400">
+                                <span class="text-white font-medium">The Trap:</span> Most new drivers spend this money, only to panic when tax season arrives in April. This tool sets that money aside in the calculation.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Maintenance -->
+                    <div>
+                        <h3 class="text-lg font-semibold text-emerald-400 mb-2">3. Maintenance & Repairs</h3>
+                        <p class="text-slate-400 mb-3">Tires, oil changes, and brake pads wear out faster when you drive for deliveries—especially with frequent stops and starts.</p>
+                        <div class="bg-slate-900 rounded-lg p-4">
+                            <p class="text-slate-400">
+                                <span class="text-white font-medium">Rule of Thumb:</span> You should budget roughly <span class="text-emerald-400">$0.05 to $0.08 per mile</span> for future repairs. If you don't budget for this, a single $800 brake job can wipe out two weeks of profit.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="py-12 px-4 border-t border-slate-800">
+            <div class="max-w-3xl mx-auto">
+                <h2 class="text-2xl font-bold mb-6">Frequently Asked Questions (FAQ)</h2>
+
+                <div class="space-y-6">
+                    <div>
+                        <h3 class="font-semibold mb-2">Is DoorDash or Uber Eats worth it in 2026?</h3>
+                        <p class="text-slate-400">
+                            It depends on your vehicle. If you drive a newer truck or SUV (low MPG, high depreciation), you might actually be making less than minimum wage. If you drive an older hybrid (high MPG, fully depreciated), your profit margins are much higher. Use the calculator above to check your specific setup.
+                        </p>
+                    </div>
+
+                    <div>
+                        <h3 class="font-semibold mb-2">What is the 2026 IRS Mileage Rate?</h3>
+                        <p class="text-slate-400">
+                            The standard IRS mileage rate for 2026 is <span class="text-emerald-400">72.5 cents per mile</span>. You can deduct this amount from your taxable income, which helps lower your tax bill significantly. However, a tax deduction is not the same as "profit"—you still spent money on the car.
+                        </p>
+                    </div>
+
+                    <div>
+                        <h3 class="font-semibold mb-2">Which delivery app pays the most?</h3>
+                        <p class="text-slate-400">
+                            It varies by market. In most areas, <span class="text-emerald-400">Instacart</span> and <span class="text-emerald-400">Amazon Flex</span> tend to pay higher per hour, but have less flexibility. DoorDash and Uber Eats offer more orders but lower base pay—tips make or break your earnings. Multi-apping (running 2+ apps) is often the best strategy.
+                        </p>
+                    </div>
+
+                    <div>
+                        <h3 class="font-semibold mb-2">How can I increase my true hourly wage?</h3>
+                        <ol class="text-slate-400 space-y-2 mt-2">
+                            <li><span class="text-white font-medium">1. Drive the Right Car:</span> A 10-year-old Toyota Prius is the "Gold Standard" for delivery work.</li>
+                            <li><span class="text-white font-medium">2. Be Selective:</span> Decline orders under $1/mile. Your acceptance rate doesn't matter as much as your $/mile.</li>
+                            <li><span class="text-white font-medium">3. Know Your Hotspots:</span> Learn which restaurants are fast and which areas tip well.</li>
+                            <li><span class="text-white font-medium">4. Track Everything:</span> Use apps like Stride or Gridwise to track every mile. You cannot deduct miles you don't document.</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bottom Line -->
+        <section class="py-12 px-4 border-t border-slate-800">
+            <div class="max-w-3xl mx-auto">
+                <h2 class="text-2xl font-bold mb-4 text-amber-500">The Bottom Line</h2>
+                <p class="text-slate-400">
+                    Don't deliver for free. If this calculator shows you are making $6.00/hour, it might be time to switch apps, change your strategy, or look for W-2 employment. Knowledge is your most valuable asset.
+                </p>
+            </div>
+        </section>
+
+        <!-- Insider Articles -->
+        <section id="insider" class="py-12 px-4 bg-slate-800/50">
+            <div class="max-w-5xl mx-auto">
+                <h2 class="text-2xl font-bold mb-8">Delivery Driver Insider</h2>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <!-- Article 1 -->
+                    <article class="bg-slate-900 rounded-xl p-5 hover:bg-slate-800 transition-colors">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="text-emerald-400">📋</span>
+                            <h3 class="font-semibold text-sm">The 25-30% Tax Rule: Why Delivery Drivers Must Save for Taxes</h3>
+                        </div>
+                        <p class="text-slate-500 text-sm mb-3">Step-by-step guide on how to calculate and save for your quarterly taxes...</p>
+                        <div class="flex items-center gap-2 text-xs text-slate-600">
+                            <span>January 02, 2026</span>
+                            <span>·</span>
+                            <span>8 min read</span>
+                        </div>
+                    </article>
+
+                    <!-- Article 2 -->
+                    <article class="bg-slate-900 rounded-xl p-5 hover:bg-slate-800 transition-colors">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="text-emerald-400">📋</span>
+                            <h3 class="font-semibold text-sm">How to Make $25+/hour on DoorDash in 2026: The Ultimate Strategy Guide</h3>
+                        </div>
+                        <p class="text-slate-500 text-sm mb-3">Unlock higher earnings with these proven order selection strategies...</p>
+                        <div class="flex items-center gap-2 text-xs text-slate-600">
+                            <span>January 02, 2026</span>
+                            <span>·</span>
+                            <span>12 min read</span>
+                        </div>
+                    </article>
+
+                    <!-- Article 3 -->
+                    <article class="bg-slate-900 rounded-xl p-5 hover:bg-slate-800 transition-colors">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="text-emerald-400">📋</span>
+                            <h3 class="font-semibold text-sm">Delivery Driver Tax Deductions 2026: Complete Checklist for DoorDash, Uber Eats & More</h3>
+                        </div>
+                        <p class="text-slate-500 text-sm mb-3">Complete guide to delivery driver taxes: mileage, phone, hot bags, and more...</p>
+                        <div class="flex items-center gap-2 text-xs text-slate-600">
+                            <span>January 14, 2026</span>
+                            <span>·</span>
+                            <span>9 min read</span>
+                        </div>
+                    </article>
+
+                    <!-- Article 4 -->
+                    <article class="bg-slate-900 rounded-xl p-5 hover:bg-slate-800 transition-colors">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="text-emerald-400">📋</span>
+                            <h3 class="font-semibold text-sm">DoorDash vs. Uber Eats vs. Instacart: Which Pays Best in 2026?</h3>
+                        </div>
+                        <p class="text-slate-500 text-sm mb-3">In-depth earnings comparison across all major delivery platforms...</p>
+                        <div class="flex items-center gap-2 text-xs text-slate-600">
+                            <span>January 12, 2026</span>
+                            <span>·</span>
+                            <span>10 min read</span>
+                        </div>
+                    </article>
+
+                    <!-- Article 5 -->
+                    <article class="bg-slate-900 rounded-xl p-5 hover:bg-slate-800 transition-colors">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="text-emerald-400">📋</span>
+                            <h3 class="font-semibold text-sm">Multi-Apping Guide: How to Run DoorDash + Uber Eats Together</h3>
+                        </div>
+                        <p class="text-slate-500 text-sm mb-3">Maximize your earnings by running multiple delivery apps simultaneously...</p>
+                        <div class="flex items-center gap-2 text-xs text-slate-600">
+                            <span>January 10, 2026</span>
+                            <span>·</span>
+                            <span>11 min read</span>
+                        </div>
+                    </article>
+
+                    <!-- Article 6 -->
+                    <article class="bg-slate-900 rounded-xl p-5 hover:bg-slate-800 transition-colors">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="text-emerald-400">📋</span>
+                            <h3 class="font-semibold text-sm">Best Cars for Food Delivery in 2026: MPG vs. Reliability</h3>
+                        </div>
+                        <p class="text-slate-500 text-sm mb-3">Which vehicles maximize your profit? We crunch the numbers...</p>
+                        <div class="flex items-center gap-2 text-xs text-slate-600">
+                            <span>January 08, 2026</span>
+                            <span>·</span>
+                            <span>7 min read</span>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer id="contact" class="border-t border-slate-800 py-8 px-4">
+        <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-slate-500">
+            <p>© 2026 Delivery Driver Wage</p>
+            <nav class="flex items-center gap-6">
+                <a href="#" class="hover:text-white">Blog</a>
+                <a href="#" class="hover:text-white">Contact</a>
+                <a href="#" class="hover:text-white">Privacy Policy</a>
+                <a href="#" class="hover:text-white">Terms of Service</a>
+            </nav>
+        </div>
+    </footer>
+
+    <script>
+        // Calculator Logic
+        function calculate() {
+            const totalEarnings = parseFloat(document.getElementById('totalEarnings').value) || 0;
+            const hoursWorked = parseFloat(document.getElementById('hoursWorked').value) || 1;
+            const milesDriven = parseFloat(document.getElementById('milesDriven').value) || 0;
+            const gasPrice = parseFloat(document.getElementById('gasPrice').value) || 0;
+            const carMpg = parseFloat(document.getElementById('carMpg').value) || 25;
+            const depreciation = parseFloat(document.getElementById('depreciation').value) || 0.10;
+            const maintenance = parseFloat(document.getElementById('maintenance').value) || 0.05;
+            const taxRate = parseFloat(document.getElementById('taxRate').value) || 15.3;
+            const includeTaxes = document.getElementById('includeTaxes').value === 'yes';
+
+            // Calculate expenses
+            const gasExpense = (milesDriven / carMpg) * gasPrice;
+            const depExpense = milesDriven * depreciation;
+            const maintExpense = milesDriven * maintenance;
+            
+            // Pre-tax profit
+            const preTaxProfit = totalEarnings - gasExpense - depExpense - maintExpense;
+            
+            // Tax expense (on profit only)
+            const taxExpense = includeTaxes ? Math.max(0, preTaxProfit * (taxRate / 100)) : 0;
+            
+            // Final calculations
+            const totalExpenses = gasExpense + depExpense + maintExpense + taxExpense;
+            const netProfit = totalEarnings - totalExpenses;
+            const grossHourly = totalEarnings / hoursWorked;
+            const trueHourly = netProfit / hoursWorked;
+
+            // Update display
+            document.getElementById('trueHourly').textContent = `$${trueHourly.toFixed(2)}`;
+            document.getElementById('grossHourly').textContent = `$${grossHourly.toFixed(2)}`;
+            document.getElementById('totalExpenses').textContent = `$${totalExpenses.toFixed(2)}`;
+            document.getElementById('netProfit').textContent = `$${netProfit.toFixed(2)}`;
+            
+            document.getElementById('gasExpense').textContent = `$${gasExpense.toFixed(2)}`;
+            document.getElementById('depExpense').textContent = `$${depExpense.toFixed(2)}`;
+            document.getElementById('maintExpense').textContent = `$${maintExpense.toFixed(2)}`;
+            document.getElementById('taxExpense').textContent = `$${taxExpense.toFixed(2)}`;
+
+            // Color code true hourly
+            const trueHourlyEl = document.getElementById('trueHourly');
+            if (trueHourly >= 20) {
+                trueHourlyEl.className = 'text-2xl font-bold text-emerald-400';
+            } else if (trueHourly >= 12) {
+                trueHourlyEl.className = 'text-2xl font-bold text-amber-400';
+            } else {
+                trueHourlyEl.className = 'text-2xl font-bold text-red-400';
+            }
+        }
+
+        // Calculate on any input change
+        document.getElementById('calculatorForm').addEventListener('input', calculate);
+        
+        // Initial calculation
+        calculate();
+    </script>
+</body>
+</html>
