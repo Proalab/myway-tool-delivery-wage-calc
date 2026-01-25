@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Delivery Driver Profit Calculator - True Hourly Wage</title>
-    <meta name="description" content="Stop guessing. Calculate your actual DoorDash, Uber Eats, Instacart, and Grubhub earnings after gas, taxes, and depreciation. Updated for 2026 IRS mileage rates.">
+    <meta name="description" content="Stop guessing. Calculate your actual Amazon Flex, FedEx, UPS, and USPS delivery earnings after gas, taxes, and depreciation. Updated for 2026 IRS mileage rates.">
     <meta name="theme-color" content="#0f172a">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -50,8 +50,7 @@
             </div>
             <nav class="flex items-center gap-6 text-sm">
                 <a href="#calculator" class="text-emerald-400 hover:text-emerald-300">Calculator</a>
-                <a href="#insider" class="text-slate-400 hover:text-white">Insider</a>
-                <a href="#contact" class="text-slate-400 hover:text-white">Contact</a>
+                <a href="#faq" class="text-slate-400 hover:text-white">FAQ</a>
             </nav>
         </div>
     </header>
@@ -65,7 +64,7 @@
                         🧮 Delivery Driver Profit Calculator
                     </h1>
                     <p class="text-slate-400 text-lg">
-                        Are you actually making money, or just selling your car one delivery at a time?
+                        Are you actually making money, or just selling your car one package at a time?
                     </p>
                     <p class="text-slate-500 text-sm mt-2">
                         Updated for 2026 IRS mileage rates: <span class="text-emerald-400">$0.725/mile</span>
@@ -73,17 +72,17 @@
                 </div>
 
                 <!-- Calculator Card -->
-                <div class="bg-slate-800 rounded-xl p-6 max-w-2xl mx-auto">
+                <div class="bg-slate-800 rounded-xl p-6 max-w-4xl mx-auto">
                     <form id="calculatorForm" class="space-y-4">
                         <div class="grid md:grid-cols-2 gap-4">
                             <!-- Total Earnings -->
                             <div>
                                 <label class="block text-sm mb-2">
-                                    <span class="text-emerald-400">$</span> Total Earnings (From App, for the shift or day)
+                                    <span class="text-emerald-400">$</span> Total Earnings (from app, for the shift or day)
                                 </label>
                                 <input type="number" id="totalEarnings" value="100.00" step="0.01" min="0"
                                     class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white focus:border-emerald-500 focus:outline-none">
-                                <p class="text-xs text-slate-500 mt-1">Enter the total shown in your delivery app (base pay, tips, and bonuses)</p>
+                                <p class="text-xs text-slate-500 mt-1">Enter total pay from your route (base pay, tips, and bonuses)</p>
                             </div>
                             <!-- Hours Worked -->
                             <div>
@@ -117,7 +116,7 @@
                         <!-- Car MPG -->
                         <div>
                             <label class="block text-sm mb-2">
-                                <span class="text-emerald-400">⚡</span> Car MPG
+                                <span class="text-emerald-400">⚡</span> Vehicle MPG
                             </label>
                             <input type="number" id="carMpg" value="25" step="1" min="1"
                                 class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white focus:border-emerald-500 focus:outline-none">
@@ -162,7 +161,7 @@
                 </div>
 
                 <!-- Results -->
-                <div id="results" class="max-w-2xl mx-auto mt-6">
+                <div id="results" class="max-w-4xl mx-auto mt-6">
                     <div class="bg-slate-800 rounded-xl p-6">
                         <h2 class="text-lg font-semibold mb-4 text-center">Your Results</h2>
                         <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
@@ -215,18 +214,18 @@
             <div class="max-w-3xl mx-auto">
                 <h2 class="text-2xl font-bold mb-4">Why Most Delivery Drivers Are Losing Money (And Don't Know It)</h2>
                 <p class="text-slate-400 mb-4">
-                    If you deliver for DoorDash, Uber Eats, Instacart, Grubhub, or Amazon Flex, the number you see in your app is <strong class="text-white">not</strong> your salary. It is your "Gross Revenue." You are running a small delivery business, and like any business, you have overhead.
+                    If you deliver packages for Amazon Flex, FedEx Ground, UPS, USPS, OnTrac, or other carriers, the number on your paycheck is <strong class="text-white">not</strong> your true earnings. It is your "Gross Revenue." You are running a small delivery business, and like any business, you have overhead.
                 </p>
                 <p class="text-slate-400">
-                    This <span class="text-emerald-400">Delivery Driver Profit Calculator</span> reveals the truth behind your earnings. By factoring in the invisible costs of delivering—depreciation, self-employment taxes, and fuel—we help you calculate your <a href="#" class="text-emerald-400 hover:underline">True Hourly Wage</a>.
+                    This <span class="text-emerald-400">Delivery Driver Profit Calculator</span> reveals the truth behind your earnings. By factoring in the invisible costs of delivering parcels—depreciation, self-employment taxes, and fuel—we help you calculate your <a href="#" class="text-emerald-400 hover:underline">True Hourly Wage</a>.
                 </p>
 
                 <h3 class="text-xl font-bold mt-8 mb-4">How to Use This Calculator</h3>
                 <ol class="space-y-3 text-slate-400">
                     <li><span class="text-white font-medium">1. Total Earnings:</span> Enter the full amount shown in your delivery app for the shift or week (including tips).</li>
-                    <li><span class="text-white font-medium">2. Hours Worked:</span> Include the time you spent waiting for orders at restaurants, not just active delivery time.</li>
-                    <li><span class="text-white font-medium">3. Miles Driven:</span> Enter the total miles, including driving to pickup spots and returning to hotspots.</li>
-                    <li><span class="text-white font-medium">4. Vehicle Details:</span> Input your car's MPG and current gas prices.</li>
+                    <li><span class="text-white font-medium">2. Hours Worked:</span> Include the time you spent picking up/dropping off parcels, or waiting for load, not just active delivery time.</li>
+                    <li><span class="text-white font-medium">3. Miles Driven:</span> Enter the total miles, including driving to the warehouse and back home.</li>
+                    <li><span class="text-white font-medium">4. Vehicle Details:</span> Input your vehicle's MPG and current gas prices.</li>
                     <li><span class="text-white font-medium">5. The Result:</span> The calculator will subtract your expenses from your earnings to show what you actually put in your pocket.</li>
                 </ol>
             </div>
@@ -258,13 +257,13 @@
                     <!-- Depreciation -->
                     <div>
                         <h3 class="text-lg font-semibold text-emerald-400 mb-2">1. Depreciation (The Silent Killer)</h3>
-                        <p class="text-slate-400 mb-3">Every mile you drive lowers the resale value of your car.</p>
+                        <p class="text-slate-400 mb-3">Every mile you drive lowers the resale value of your vehicle.</p>
                         <div class="bg-slate-900 rounded-lg p-4 space-y-3">
                             <p class="text-slate-400">
-                                <span class="text-white font-medium">The Math:</span> If you bought a car for $20,000 and it lasts 200,000 miles, it costs you <span class="text-emerald-400">$0.10 per mile</span> just in lost value.
+                                <span class="text-white font-medium">The Math:</span> If you bought a van for $30,000 and it lasts 200,000 miles, it costs you <span class="text-emerald-400">$0.15 per mile</span> just in lost value.
                             </p>
                             <p class="text-slate-400">
-                                <span class="text-white font-medium">The Reality:</span> When you trade in your car later, you will get thousands less because of those high delivery miles. Our calculator estimates this so you can save for your next vehicle.
+                                <span class="text-white font-medium">The Reality:</span> When you trade in your vehicle later, you will get thousands less because of those high delivery miles. Our calculator estimates this so you can save for your next vehicle.
                             </p>
                         </div>
                     </div>
@@ -272,7 +271,7 @@
                     <!-- Self-Employment Tax -->
                     <div>
                         <h3 class="text-lg font-semibold text-emerald-400 mb-2">2. The Self-Employment Tax Hit</h3>
-                        <p class="text-slate-400 mb-3">As a W-2 employee, your boss pays half your Social Security and Medicare taxes. As a delivery driver (1099 contractor), you must pay both halves.</p>
+                        <p class="text-slate-400 mb-3">As a W-2 employee, your employer pays half your Social Security and Medicare taxes. As an independent contractor (1099), you must pay both halves.</p>
                         <div class="bg-slate-900 rounded-lg p-4 space-y-3">
                             <p class="text-slate-400">
                                 <span class="text-white font-medium">The Rate:</span> The Self-Employment Tax rate is roughly <span class="text-emerald-400">15.3%</span> of your net profit.
@@ -286,10 +285,10 @@
                     <!-- Maintenance -->
                     <div>
                         <h3 class="text-lg font-semibold text-emerald-400 mb-2">3. Maintenance & Repairs</h3>
-                        <p class="text-slate-400 mb-3">Tires, oil changes, and brake pads wear out faster when you drive for deliveries—especially with frequent stops and starts.</p>
+                        <p class="text-slate-400 mb-3">Tires, oil changes, and brake pads wear out faster when you drive delivery routes—especially with frequent stops and heavy loads.</p>
                         <div class="bg-slate-900 rounded-lg p-4">
                             <p class="text-slate-400">
-                                <span class="text-white font-medium">Rule of Thumb:</span> You should budget roughly <span class="text-emerald-400">$0.05 to $0.08 per mile</span> for future repairs. If you don't budget for this, a single $800 brake job can wipe out two weeks of profit.
+                                <span class="text-white font-medium">Rule of Thumb:</span> You should budget roughly <span class="text-emerald-400">$0.05 to $0.10 per mile</span> for future repairs. Cargo vans and larger vehicles cost more to maintain than sedans.
                             </p>
                         </div>
                     </div>
@@ -298,40 +297,47 @@
         </section>
 
         <!-- FAQ Section -->
-        <section class="py-12 px-4 border-t border-slate-800">
+        <section id="faq" class="py-12 px-4 border-t border-slate-800">
             <div class="max-w-3xl mx-auto">
                 <h2 class="text-2xl font-bold mb-6">Frequently Asked Questions (FAQ)</h2>
 
                 <div class="space-y-6">
                     <div>
-                        <h3 class="font-semibold mb-2">Is DoorDash or Uber Eats worth it in 2026?</h3>
+                        <h3 class="font-semibold mb-2">Is Amazon Flex worth it in 2026?</h3>
                         <p class="text-slate-400">
-                            It depends on your vehicle. If you drive a newer truck or SUV (low MPG, high depreciation), you might actually be making less than minimum wage. If you drive an older hybrid (high MPG, fully depreciated), your profit margins are much higher. Use the calculator above to check your specific setup.
+                            It depends on your vehicle and market. If you drive a gas-guzzling van or SUV, you might actually be making less than minimum wage after expenses. If you drive a fuel-efficient car for smaller routes, your profit margins are much higher. Use the calculator above to check your specific setup.
                         </p>
                     </div>
 
                     <div>
                         <h3 class="font-semibold mb-2">What is the 2026 IRS Mileage Rate?</h3>
                         <p class="text-slate-400">
-                            The standard IRS mileage rate for 2026 is <span class="text-emerald-400">72.5 cents per mile</span>. You can deduct this amount from your taxable income, which helps lower your tax bill significantly. However, a tax deduction is not the same as "profit"—you still spent money on the car.
+                            The standard IRS mileage rate for 2026 is <span class="text-emerald-400">72.5 cents per mile</span>. You can deduct this amount from your taxable income, which helps lower your tax bill significantly. However, a tax deduction is not the same as "profit"—you still spent money on the vehicle.
                         </p>
                     </div>
 
                     <div>
-                        <h3 class="font-semibold mb-2">Which delivery app pays the most?</h3>
+                        <h3 class="font-semibold mb-2">Which delivery service pays the best for package delivery?</h3>
                         <p class="text-slate-400">
-                            It varies by market. In most areas, <span class="text-emerald-400">Instacart</span> and <span class="text-emerald-400">Amazon Flex</span> tend to pay higher per hour, but have less flexibility. DoorDash and Uber Eats offer more orders but lower base pay—tips make or break your earnings. Multi-apping (running 2+ apps) is often the best strategy.
+                            It varies by region. <span class="text-emerald-400">Amazon Flex</span> offers flexible blocks but inconsistent pay. <span class="text-emerald-400">FedEx Ground</span> contractors often earn more per route but require longer commitments. <span class="text-emerald-400">UPS</span> and <span class="text-emerald-400">USPS</span> W-2 positions typically offer better benefits but are harder to get. Compare your true hourly wage across platforms.
                         </p>
                     </div>
 
                     <div>
                         <h3 class="font-semibold mb-2">How can I increase my true hourly wage?</h3>
                         <ol class="text-slate-400 space-y-2 mt-2">
-                            <li><span class="text-white font-medium">1. Drive the Right Car:</span> A 10-year-old Toyota Prius is the "Gold Standard" for delivery work.</li>
-                            <li><span class="text-white font-medium">2. Be Selective:</span> Decline orders under $1/mile. Your acceptance rate doesn't matter as much as your $/mile.</li>
-                            <li><span class="text-white font-medium">3. Know Your Hotspots:</span> Learn which restaurants are fast and which areas tip well.</li>
-                            <li><span class="text-white font-medium">4. Track Everything:</span> Use apps like Stride or Gridwise to track every mile. You cannot deduct miles you don't document.</li>
+                            <li><span class="text-white font-medium">1. Choose the Right Vehicle:</span> A fuel-efficient cargo van or hatchback can save you hundreds per month.</li>
+                            <li><span class="text-white font-medium">2. Optimize Your Route:</span> Plan your stops efficiently to minimize miles driven per package.</li>
+                            <li><span class="text-white font-medium">3. Pick Better Blocks:</span> For Amazon Flex, learn which warehouse locations and time slots pay better for the miles involved.</li>
+                            <li><span class="text-white font-medium">4. Track Everything:</span> Use apps like Stride or Everlance to track every mile. You cannot deduct miles you don't document.</li>
                         </ol>
+                    </div>
+
+                    <div>
+                        <h3 class="font-semibold mb-2">Am I an employee or independent contractor?</h3>
+                        <p class="text-slate-400">
+                            <span class="text-emerald-400">Amazon Flex</span> drivers are independent contractors (1099). <span class="text-emerald-400">FedEx Ground</span> uses contracted service providers who may hire you as W-2 or 1099. <span class="text-emerald-400">UPS</span> and <span class="text-emerald-400">USPS</span> typically hire W-2 employees. If you're 1099, you're responsible for self-employment taxes—factor that into your calculations.
+                        </p>
                     </div>
                 </div>
             </div>
@@ -342,113 +348,19 @@
             <div class="max-w-3xl mx-auto">
                 <h2 class="text-2xl font-bold mb-4 text-amber-500">The Bottom Line</h2>
                 <p class="text-slate-400">
-                    Don't deliver for free. If this calculator shows you are making $6.00/hour, it might be time to switch apps, change your strategy, or look for W-2 employment. Knowledge is your most valuable asset.
+                    Don't deliver packages for free. If this calculator shows you are making $8.00/hour after expenses, it might be time to find better-paying routes, switch platforms, or consider W-2 employment with full benefits. Knowledge is your most valuable asset.
                 </p>
-            </div>
-        </section>
-
-        <!-- Insider Articles -->
-        <section id="insider" class="py-12 px-4 bg-slate-800/50">
-            <div class="max-w-5xl mx-auto">
-                <h2 class="text-2xl font-bold mb-8">Delivery Driver Insider</h2>
-                <div class="grid md:grid-cols-3 gap-6">
-                    <!-- Article 1 -->
-                    <article class="bg-slate-900 rounded-xl p-5 hover:bg-slate-800 transition-colors">
-                        <div class="flex items-center gap-2 mb-3">
-                            <span class="text-emerald-400">📋</span>
-                            <h3 class="font-semibold text-sm">The 25-30% Tax Rule: Why Delivery Drivers Must Save for Taxes</h3>
-                        </div>
-                        <p class="text-slate-500 text-sm mb-3">Step-by-step guide on how to calculate and save for your quarterly taxes...</p>
-                        <div class="flex items-center gap-2 text-xs text-slate-600">
-                            <span>January 02, 2026</span>
-                            <span>·</span>
-                            <span>8 min read</span>
-                        </div>
-                    </article>
-
-                    <!-- Article 2 -->
-                    <article class="bg-slate-900 rounded-xl p-5 hover:bg-slate-800 transition-colors">
-                        <div class="flex items-center gap-2 mb-3">
-                            <span class="text-emerald-400">📋</span>
-                            <h3 class="font-semibold text-sm">How to Make $25+/hour on DoorDash in 2026: The Ultimate Strategy Guide</h3>
-                        </div>
-                        <p class="text-slate-500 text-sm mb-3">Unlock higher earnings with these proven order selection strategies...</p>
-                        <div class="flex items-center gap-2 text-xs text-slate-600">
-                            <span>January 02, 2026</span>
-                            <span>·</span>
-                            <span>12 min read</span>
-                        </div>
-                    </article>
-
-                    <!-- Article 3 -->
-                    <article class="bg-slate-900 rounded-xl p-5 hover:bg-slate-800 transition-colors">
-                        <div class="flex items-center gap-2 mb-3">
-                            <span class="text-emerald-400">📋</span>
-                            <h3 class="font-semibold text-sm">Delivery Driver Tax Deductions 2026: Complete Checklist for DoorDash, Uber Eats & More</h3>
-                        </div>
-                        <p class="text-slate-500 text-sm mb-3">Complete guide to delivery driver taxes: mileage, phone, hot bags, and more...</p>
-                        <div class="flex items-center gap-2 text-xs text-slate-600">
-                            <span>January 14, 2026</span>
-                            <span>·</span>
-                            <span>9 min read</span>
-                        </div>
-                    </article>
-
-                    <!-- Article 4 -->
-                    <article class="bg-slate-900 rounded-xl p-5 hover:bg-slate-800 transition-colors">
-                        <div class="flex items-center gap-2 mb-3">
-                            <span class="text-emerald-400">📋</span>
-                            <h3 class="font-semibold text-sm">DoorDash vs. Uber Eats vs. Instacart: Which Pays Best in 2026?</h3>
-                        </div>
-                        <p class="text-slate-500 text-sm mb-3">In-depth earnings comparison across all major delivery platforms...</p>
-                        <div class="flex items-center gap-2 text-xs text-slate-600">
-                            <span>January 12, 2026</span>
-                            <span>·</span>
-                            <span>10 min read</span>
-                        </div>
-                    </article>
-
-                    <!-- Article 5 -->
-                    <article class="bg-slate-900 rounded-xl p-5 hover:bg-slate-800 transition-colors">
-                        <div class="flex items-center gap-2 mb-3">
-                            <span class="text-emerald-400">📋</span>
-                            <h3 class="font-semibold text-sm">Multi-Apping Guide: How to Run DoorDash + Uber Eats Together</h3>
-                        </div>
-                        <p class="text-slate-500 text-sm mb-3">Maximize your earnings by running multiple delivery apps simultaneously...</p>
-                        <div class="flex items-center gap-2 text-xs text-slate-600">
-                            <span>January 10, 2026</span>
-                            <span>·</span>
-                            <span>11 min read</span>
-                        </div>
-                    </article>
-
-                    <!-- Article 6 -->
-                    <article class="bg-slate-900 rounded-xl p-5 hover:bg-slate-800 transition-colors">
-                        <div class="flex items-center gap-2 mb-3">
-                            <span class="text-emerald-400">📋</span>
-                            <h3 class="font-semibold text-sm">Best Cars for Food Delivery in 2026: MPG vs. Reliability</h3>
-                        </div>
-                        <p class="text-slate-500 text-sm mb-3">Which vehicles maximize your profit? We crunch the numbers...</p>
-                        <div class="flex items-center gap-2 text-xs text-slate-600">
-                            <span>January 08, 2026</span>
-                            <span>·</span>
-                            <span>7 min read</span>
-                        </div>
-                    </article>
-                </div>
             </div>
         </section>
     </main>
 
     <!-- Footer -->
-    <footer id="contact" class="border-t border-slate-800 py-8 px-4">
+    <footer class="border-t border-slate-800 py-8 px-4">
         <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-slate-500">
             <p>© 2026 Delivery Driver Wage</p>
             <nav class="flex items-center gap-6">
-                <a href="#" class="hover:text-white">Blog</a>
-                <a href="#" class="hover:text-white">Contact</a>
-                <a href="#" class="hover:text-white">Privacy Policy</a>
-                <a href="#" class="hover:text-white">Terms of Service</a>
+                <a href="privacy.html" class="hover:text-white">Privacy Policy</a>
+                <a href="terms.html" class="hover:text-white">Terms of Service</a>
             </nav>
         </div>
     </footer>
