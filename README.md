@@ -33,3 +33,4 @@ Just open `index.html` in your browser. No build step required.
 ## License
 
 MIT
+
