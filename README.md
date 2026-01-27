@@ -1,24 +1,15 @@
-# Side Hustle Wage Calculator
+# Delivery Driver Wage Calculator
 
-A calculator that helps gig workers determine their true hourly wage after accounting for all expenses.
+A calculator that helps delivery drivers (Amazon Flex, FedEx, UPS, USPS) determine their true hourly wage after accounting for all expenses.
 
 ## Features
 
 - Calculate true hourly wage after expenses
-- Factor in mileage costs (uses IRS standard rate)
-- Include gas, phone/data, and other expenses
+- Factor in mileage costs (2026 IRS rate: $0.725/mile)
+- Include gas, depreciation, maintenance, and self-employment taxes
 - Visual breakdown of earnings vs expenses
-- Comparison against minimum wage and averages
+- Comprehensive FAQ for delivery drivers
 - 100% client-side - no data leaves your browser
-
-## Deploy to GitHub Pages
-
-1. Push this repository to GitHub
-2. Go to repository **Settings** → **Pages**
-3. Under "Source", select **Deploy from a branch**
-4. Select **main** branch and **/ (root)** folder
-5. Click **Save**
-6. Your site will be live at `https://yourusername.github.io/wage-calc/`
 
 ## Tech Stack
 
@@ -32,5 +23,11 @@ Just open `index.html` in your browser. No build step required.
 
 ## License
 
-MIT
+**Proprietary - All Rights Reserved**
+
+© 2026 Proalab Limited. This software may not be used, copied, modified, or distributed without explicit written authorization from Proalab Limited.
+
+See [LICENSE](LICENSE) for details.
+
+Contact: support@mywayroute.com
 
