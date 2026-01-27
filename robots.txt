@@ -1,7 +1,6 @@
-# robots.txt for Delivery Driver Wage Calculator
+# robots.txt for Delivery Driver Pay Calculator
 
 User-agent: *
 Allow: /
 
-# Sitemap location - UPDATE TO YOUR ACTUAL DOMAIN
-Sitemap: https://yourdomain.github.io/wage-calc/sitemap.xml
+Sitemap: https://deliverydriverpay.com/sitemap.xml

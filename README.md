@@ -1,10 +1,10 @@
-# Delivery Driver Wage Calculator
+# Delivery Driver Pay Calculator
 
 A calculator that helps delivery drivers (Amazon Flex, FedEx, UPS, USPS) determine their true hourly wage after accounting for all expenses.
 
 ## Features
 
-- Calculate true hourly wage after expenses
+- Calculate true hourly pay after expenses
 - Factor in mileage costs (2026 IRS rate: $0.725/mile)
 - Include gas, depreciation, maintenance, and self-employment taxes
 - Visual breakdown of earnings vs expenses
